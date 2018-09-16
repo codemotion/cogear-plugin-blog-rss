@@ -7,7 +7,7 @@ module.exports = {
   apply(){
     cogear.on('build.done',()=>{
       // if(!['production','build','deploy'].includes(cogear.mode)) return;
-      const config = Object.assign({},cogear.config.feed,{
+      const config = Object.assign({
         title: cogear.config.title,
         description: cogear.config.description,
         generator: 'Cogear.JS plugin blog-rss',
@@ -17,18 +17,18 @@ module.exports = {
         language: 'en',
         image: '',
         author: ''
-      });
+      },cogear.config.feed);
       const feed = new RSS(config);
       if(cogear.blog.posts.length){
         cogear.blog.posts.forEach(post=>{
           let img_url = '';
-          let matches = post.content.match('(https?:\/\/.+\.(?:jpg|png))');
+          let matches = post.content.match('(https?:\/\/[^\"\'\>\<]+\.(?:jpg|png))');
           if(matches){
             img_url = matches.shift();
           }
           feed.item({
             title: post.title,
-            description: striptags(post.teaser,['a','b','strong','i','em','u','strikethrough','p','div']),
+            description: striptags(post.teaser,['a','b','strong','i','em','u','strikethrough','p']),
             url: path.join(cogear.config.url,post.uri),
             guid: path.join(cogear.config.url,post.uri),
             categories: post.tags && Array.isArray(post.tags) ? post.tags.map(tag => tag[0].toUpperCase() + tag.slice(1)) : '',
