@@ -1,7 +1,7 @@
 {
 	"name": "cogear-plugin-rss",
 	"description": "Add RSS feed to blog",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "Dmitriy Beliaev <admin@cogear.ru> (https://cogear.org/)",
 	"repository": "http://github.com/codemotion/cogear-plugin-blog-rss",
 	"homepage": "http://github.com/codemotion/cogear-plugin-blog-rss",
